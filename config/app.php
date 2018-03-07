@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'PRC',
 
     /*
     |--------------------------------------------------------------------------
@@ -121,7 +121,6 @@ return [
 
     'providers' => [
 
-        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         /*
          * Laravel Framework Service Providers...
          */
@@ -151,6 +150,9 @@ return [
         /*
          * Package Service Providers...
          */
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Jenssegers\Mongodb\MongodbServiceProvider::class,
+        Naux\Mail\SendCloudServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -160,8 +162,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
-        Jenssegers\Mongodb\MongodbServiceProvider::class,
 
     ],
 
