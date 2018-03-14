@@ -154,6 +154,7 @@ return [
         Jenssegers\Mongodb\MongodbServiceProvider::class,
         Naux\Mail\SendCloudServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
+        Overtrue\LaravelUEditor\UEditorServiceProvider::class,
 
         /*
          * Application Service Providers...
