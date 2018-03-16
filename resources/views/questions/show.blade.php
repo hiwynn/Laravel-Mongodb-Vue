@@ -14,9 +14,9 @@
             </div>
         </div>
     </div>
-    <style>
-        .card-body img {
-            width: 100%;
-        }
-    </style>
 @endsection
+<style>
+    .card-body img {
+        width: 100%;
+    }
+</style>

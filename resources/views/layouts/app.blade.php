@@ -73,5 +73,6 @@
     <script src="{{ asset('js/app.js') }}">
         $('#flash-overlay-modal').modal();
     </script>
+    @yield('js');
 </body>
 </html>
