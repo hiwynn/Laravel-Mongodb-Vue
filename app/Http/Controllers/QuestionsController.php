@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Question;
+use App\Topic;
 use Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreQuestionRequest;
@@ -43,6 +44,7 @@ class QuestionsController extends Controller
      */
     public function store(StoreQuestionRequest $request)
     {
+        $topics = $this->normalizeTopic($request->get('topics'));
         $data = [
             'title' => $request->get('title'),
             'body' => $request->get('body'),
@@ -50,6 +52,8 @@ class QuestionsController extends Controller
         ];
 
         $question = Question::create($data);
+
+        $question->topics()->attach($topics);
 
         return redirect()->route('questions.show', [$question->id]);
     }
@@ -62,7 +66,7 @@ class QuestionsController extends Controller
      */
     public function show($id)
     {
-        $question = Question::find($id);
+        $question = Question::where('id', $id)->with('topics')->first();
 
         return view('questions.show', compact('question'));
     }
@@ -100,4 +104,17 @@ class QuestionsController extends Controller
     {
         //
     }
+
+    private function normalizeTopic(array $topics)
+    {
+        return collect($topics)->map(function ($topic) {
+            if (is_numeric($topic)) {
+                Topic::find($topic)->increment('questions_count');
+                return (int)$topic;
+            }
+            $newTopic = Topic::create(['name' => $topic, 'questions_count' => 1]);
+            return $newTopic->id;
+        })->toArray();
+    }
+
 }

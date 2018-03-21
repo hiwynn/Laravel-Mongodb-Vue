@@ -22,9 +22,9 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <select class="js-example-basic-multiple form-control" name="states[]" multiple="multiple">
-                                    <option value="AL">Alabama</option>
-                                    <option value="WY">Wyoming</option>
+                                <select name="topics[]"
+                                        class="js-example-placeholder-multiple js-data-example-ajax form-control"
+                                        multiple="multiple">
                                 </select>
                             </div>
                             <div class="form-group{{ $errors->has('body') ? ' has-error' : ''}}">
@@ -46,7 +46,7 @@
             </div>
         </div>
     </div>
-    @section('js')
+@section('js')
     <!-- 实例化编辑器 -->
     <script type="text/javascript">
       var ue = UE.getEditor('container', {
@@ -68,7 +68,7 @@
         return "<div class='select2-result-repository clearfix'>" +
         "<div class='select2-result-repository__meta'>" +
         "<div class='select2-result-repository__title'>" +
-        topic.name ? topic.name : "Laravel"   +
+        topic.name ? topic.name : "Laravel" +
           "</div></div></div>";
       }
       function formatTopicSelection (topic) {
@@ -96,7 +96,9 @@
         },
         templateResult: formatTopic,
         templateSelection: formatTopicSelection,
-        escapeMarkup: function (markup) { return markup; }
+        escapeMarkup: function (markup) {
+          return markup;
+        }
       });
 
 
