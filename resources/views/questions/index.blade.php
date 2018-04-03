@@ -4,6 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                <example></example>
                 @foreach($questions as $question)
                     <div class="media">
                         <div class="media-left">

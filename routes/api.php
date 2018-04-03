@@ -19,7 +19,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::middleware('api')->get('/topics', function (Request $request) {
     $topics = \App\Topic::select(['id', 'name'])
-        ->where('name', 'like', '%'.$request->query('q').'%')
+        ->where('name', 'like', '%' . $request->query('q') . '%')
         ->get();
     return $topics;
+});
+
+Route::middleware('api')->post('/question/follower', function (Request $request) {
+    return Response()->json(['followed' => false]);
 });
