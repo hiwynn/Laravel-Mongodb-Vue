@@ -7,6 +7,7 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+require('vue-resource');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -16,6 +17,7 @@ window.Vue = require('vue');
 
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('question-follow-button', require('./components/QuestionFollowButton.vue'));
+Vue.component('user-follow-button', require('./components/UserFollowButton.vue'));
 
 const app = new Vue({
   el: '#app'

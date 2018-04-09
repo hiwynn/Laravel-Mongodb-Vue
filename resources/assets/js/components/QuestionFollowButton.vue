@@ -28,6 +28,7 @@
     methods:{
       follow() {
         this.$http.post('/api/question/follow',{'question':this.question}).then(response => {
+            console.log(response);
           this.followed = response.data.followed
         })
       }
