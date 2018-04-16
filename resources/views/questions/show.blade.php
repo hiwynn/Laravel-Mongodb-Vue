@@ -27,6 +27,9 @@
                                 <button class="button is-naked delete-button">删除</button>
                             </form>
                         @endif
+                        <comments type="question"
+                                  model="{{$question->id}}"
+                                  count="{{$question->comments()->count()}}"></comments>
                     </div>
                 </div>
             </div>
@@ -42,7 +45,7 @@
                             {{ Auth::user()->followed($question->id) ? '已关注' : '关注该问题' }}
                         </a>--}}
                         <question-follow-button question="{{$question->id}}"></question-follow-button>
-                        <a href="#editor" class="btn btn-primary">撰写答案</a>
+                        <a href="#editor" style="float: right" class="btn btn-primary">撰写答案</a>
                     </div>
                 </div>
             </div>
@@ -55,10 +58,12 @@
                         @foreach($question->answers as $answer)
                             <div class="media">
                                 <div class="media-left">
-                                    <a href="">
+                                    {{--<a href="">
                                         <img style="width: 36px" width="36" src="{{ $answer->user->avatar }}"
                                              alt="{{ $answer->user->name }}">
-                                    </a>
+                                    </a>--}}
+                                    <user-vote-button answer="{{$answer->id}}"
+                                                      count="{{$answer->votes_count}}"></user-vote-button>
                                 </div>
                                 <div class="media-body">
                                     <h4 class="media-heading">
@@ -66,6 +71,9 @@
                                     </h4>
                                     {!! $answer->body !!}
                                 </div>
+                                <comments type="answer"
+                                          model="{{$answer->id}}"
+                                          count="{{$answer->comments()->count()}}"></comments>
                             </div>
                         @endforeach
                         @if(Auth::check())
@@ -101,7 +109,8 @@
                         <div class="media">
                             <div class="media-left">
                                 <a href="#">
-                                    <img style="width: 50px;" src="{{$question->user->avatar}}" alt="{{$question->user->name}}">
+                                    <img style="width: 50px;" src="{{$question->user->avatar}}"
+                                         alt="{{$question->user->name}}">
                                 </a>
                             </div>
                             <div class="media-body">
@@ -126,7 +135,7 @@
                             </div>
                         </div>
                         <user-follow-button user="{{$question->user_id}}"></user-follow-button>
-                        <a href="#editor" class="btn btn-default btn-primary">发送私信</a>
+                        <send-message user="{{$question->user_id}}"></send-message>
                     </div>
                 </div>
             </div>
@@ -135,20 +144,20 @@
 @section('js')
     <!-- 实例化编辑器 -->
     <script type="text/javascript">
-      var ue = UE.getEditor('container', {
-        toolbars: [
-          ['bold', 'italic', 'underline', 'strikethrough', 'blockquote', 'insertunorderedlist', 'insertorderedlist', 'justifyleft', 'justifycenter', 'justifyright', 'link', 'insertimage', 'fullscreen']
-        ],
-        elementPathEnabled: false,
-        enableContextMenu: false,
-        autoClearEmptyNode: true,
-        wordCount: false,
-        imagePopup: false,
-        autotypeset: {indent: true, imageBlockLine: 'center'}
-      });
-      ue.ready(function () {
-        ue.execCommand('serverparam', '_token', '{{ csrf_token() }}'); // 设置 CSRF token.
-      });
+        var ue = UE.getEditor('container', {
+            toolbars          : [
+                ['bold', 'italic', 'underline', 'strikethrough', 'blockquote', 'insertunorderedlist', 'insertorderedlist', 'justifyleft', 'justifycenter', 'justifyright', 'link', 'insertimage', 'fullscreen']
+            ],
+            elementPathEnabled: false,
+            enableContextMenu : false,
+            autoClearEmptyNode: true,
+            wordCount         : false,
+            imagePopup        : false,
+            autotypeset       : {indent: true, imageBlockLine: 'center'}
+        });
+        ue.ready(function () {
+            ue.execCommand('serverparam', '_token', '{{ csrf_token() }}'); // 设置 CSRF token.
+        });
     </script>
 @endsection
 @endsection

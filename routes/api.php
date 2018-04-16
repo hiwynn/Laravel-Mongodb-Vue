@@ -13,36 +13,19 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
 
-Route::middleware('api')->get('/topics', function (Request $request) {
-    $topics = \App\Topic::select(['id', 'name'])
-        ->where('name', 'like', '%' . $request->query('q') . '%')
-        ->get();
-    return $topics;
-});
-
-Route::middleware('api')->post('/question/follower', function (Request $request) {
-    $user = Auth::guard('api')->user();
-    if ($user->followed($request->get('question'))) {
-        return Response()->json(['followed' => true]);
-    }
-    return Response()->json(['followed' => false]);
-});
-
-Route::middleware('api')->post('/question/follow', function (Request $request) {
-    $user = Auth::guard('api')->user();
-    $question = \App\Question::find($request->get('question'));
-    $followed = $user->followThis($question->id);
-    if (count($followed['detached']) > 0) {
-        $question->decrement('followers_count');
-        return Response()->json(['followed' => false]);
-    }
-    $question->increment('followers_count');
-    return Response()->json(['followed' => true]);
-});
-
+Route::middleware('auth:api')->get('/topics', 'TopicsController@index');
+Route::middleware('auth:api')->post('/question/follower', 'QuestionFollowController@follower');
+Route::middleware('auth:api')->post('/question/follow', 'QuestionFollowController@followThisQuestion');
 Route::middleware('auth:api')->get('/user/followers/{id}', 'FollowersController@index');
 Route::middleware('auth:api')->post('/user/follow', 'FollowersController@follow');
+Route::middleware('auth:api')->post('/answer/{id}/votes/users', 'VotesController@users');
+Route::middleware('auth:api')->post('/answer/vote', 'VotesController@vote');
+Route::middleware('auth:api')->post('/message/store', 'MessagesController@store');
+Route::middleware('auth:api')->get('/answer/{id}/comments', 'CommentsController@answer');
+Route::middleware('auth:api')->get('/question/{id}/comments', 'CommentsController@question');
+Route::middleware('auth:api')->post('comment', 'CommentsController@store');
+

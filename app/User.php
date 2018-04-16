@@ -76,6 +76,26 @@ class User extends Authenticatable
         return $this->followers()->toggle($user);
     }
 
+    public function votes()
+    {
+        return $this->belongsToMany(Answer::class, 'votes')->withTimestamps();
+    }
+
+    public function voteFor($answer)
+    {
+        return $this->votes()->toggle($answer);
+    }
+
+    public function hasVotedFor($answer)
+    {
+        return $this->votes()->where('answer_id', $answer)->count();
+    }
+
+    public function message()
+    {
+        return $this->hasMany(Message::class, 'to_user_id');
+    }
+
     public function sendPasswordResetNotification($token)
     {
         $data = [

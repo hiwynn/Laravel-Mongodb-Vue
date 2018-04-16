@@ -26,6 +26,13 @@
             'csrfToken' => csrf_token()
         ]); ?>;
         Laravel.apiToken = "{{ Auth::check() ? 'Bearer '.Auth::user()->api_token : 'Bearer ' }}";
+
+        @if (Auth::check())
+            window.Zhihu = {
+            name  : "{{Auth::user()->name}}",
+            avatar: "{{Auth::user()->avatar}}"
+        }
+        @endif
     </script>
 </head>
 <body>
@@ -57,12 +64,6 @@
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                退出登录
                             </a>
 
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">

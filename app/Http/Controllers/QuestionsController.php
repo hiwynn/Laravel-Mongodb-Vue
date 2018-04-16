@@ -49,8 +49,8 @@ class QuestionsController extends Controller
     {
         $topics = $this->questionRepository->normalizeTopic($request->get('topics'));
         $data = [
-            'title' => $request->get('title'),
-            'body' => $request->get('body'),
+            'title'   => $request->get('title'),
+            'body'    => $request->get('body'),
             'user_id' => Auth::id()
         ];
 
@@ -103,7 +103,7 @@ class QuestionsController extends Controller
 
         $question->update([
             'title' => $request->get('title'),
-            'body' => $request->get('body')
+            'body'  => $request->get('body')
         ]);
 
         $question->topics()->sync($topics);

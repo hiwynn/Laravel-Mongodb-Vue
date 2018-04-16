@@ -16,11 +16,13 @@ class QuestionRepository
         return Question::create($attributes);
     }
 
-    public function byId($id) {
+    public function byId($id)
+    {
         return Question::find($id);
     }
 
-    public function getQuestionsFeed() {
+    public function getQuestionsFeed()
+    {
         return Question::published()->latest('updated_at')->with('user')->get();
     }
 
@@ -34,5 +36,11 @@ class QuestionRepository
             $newTopic = Topic::create(['name' => $topic, 'questions_count' => 1]);
             return $newTopic->id;
         })->toArray();
+    }
+
+    public function getQuestionCommentsById($id)
+    {
+        $question = Question::with('comments', 'comments.user')->where('id', $id)->first();
+        return $question->comments;
     }
 }
