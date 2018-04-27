@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">更换头像</div>
                     <div class="card-body">
-
+                        <user-avatar avatar="{{ Auth::user()->avatar }}"></user-avatar>
                     </div>
                 </div>
             </div>

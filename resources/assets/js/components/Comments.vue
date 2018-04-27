@@ -47,15 +47,8 @@
         props   : ['type', 'model', 'count'],
         data() {
             return {
-                body      : '',
-                comments  : [],
-                newComment: {
-                    user: {
-                        name  : Zhihu.name,
-                        avatar: Zhihu.avatar
-                    },
-                    body: ''
-                }
+                body    : '',
+                comments: []
             }
         },
         computed: {
@@ -76,10 +69,16 @@
                     'model': this.model,
                     'body' : this.body
                 }).then(response => {
-                    this.newComment.body = response.data.body
-                    this.comments.push(this.newComment)
+                    let comment = {
+                        user: {
+                            name  : Zhihu.name,
+                            avatar: Zhihu.avatar
+                        },
+                        body: response.data.body
+                    }
+                    this.comments.push(comment)
                     this.body = ''
-                    this.count ++
+                    this.count++
                 })
             },
             showCommentsForm() {
