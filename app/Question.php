@@ -37,4 +37,9 @@ class Question extends Model
     {
         return $query->where('is_hidden', 'F');
     }
+
+    public function scopeSearch($query, $keyword)
+    {
+        return $query->where('is_hidden', 'F')->where('title', 'like', '%' . $keyword . '%');
+    }
 }

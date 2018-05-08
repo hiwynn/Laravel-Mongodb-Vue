@@ -23,7 +23,8 @@ class User extends Authenticatable
         'password',
         'avatar',
         'confirmation_token',
-        'api_token'
+        'api_token',
+        'settings'
     ];
 
     /**
@@ -35,6 +36,15 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    protected $casts = [
+        'settings' => 'json'
+    ];
+
+    public function settings()
+    {
+         return new Setting($this);
+    }
 
     public function answers()
     {

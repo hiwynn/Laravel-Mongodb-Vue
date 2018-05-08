@@ -1,70 +1,84 @@
 .panel-body.content img {
-  width: 100%;
+    width: 100%;
 }
 
 a.topic {
-  background: #eff6fa;
-  padding: 1px 10px 0;
-  border-radius: 30px;
-  text-decoration: none;
-  margin: 0 5px 5px 0;
-  display: inline-block;
-  white-space: nowrap;
-  cursor: pointer;
+    background: #eff6fa;
+    padding: 1px 10px 0;
+    border-radius: 30px;
+    text-decoration: none;
+    margin: 0 5px 5px 0;
+    display: inline-block;
+    white-space: nowrap;
+    cursor: pointer;
 }
 
 a.topic:hover {
-  background: #259;
-  color: #fff;
-  text-decoration: none;
+    background: #259;
+    color: #fff;
+    text-decoration: none;
 }
 
 .button.is-naked {
-  background: 0 0;
-  border: none;
-  border-radius: 0;
-  padding: 0;
-  height: auto;
-}
-.actions {
-  display: flex;
-  padding: 10px 20px;
-}
-.delete-form {
-  margin-left: 20px;
-}
-.delete-button {
-  color: #3097D1;
-  text-decoration: none;
-}
-.question-follow {
-  text-align: center;
+    background: 0 0;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    height: auto;
 }
 
-.user-statics , .user-actions {
-  margin-top: 20px;
+.actions {
+    display: flex;
+    padding: 10px 20px;
 }
+
+.delete-form {
+    margin-left: 20px;
+}
+
+.delete-button {
+    color: #3097D1;
+    text-decoration: none;
+}
+
+.question-follow {
+    text-align: center;
+}
+
+.user-statics, .user-actions {
+    margin-top: 20px;
+}
+
 .user-statics {
-  display: flex;
+    display: flex;
 }
+
 .statics-item {
-  padding: 2px 18px;
+    padding: 2px 18px;
 }
+
 .messages-list {
-  margin-top: 80px;
+    margin-top: 80px;
 }
+
 .media.unread {
-  background:#fff9ca;
+    background: #fff9ca;
 }
+
 .notifications {
-  position: relative;
-  padding: 8px 15px 8px 25px;
-  color: #666;
-  border: none;
-  border-top: 1px dotted #eee;
-  background: transparent;
+    position: relative;
+    padding: 8px 15px 8px 25px;
+    color: #666;
+    border: none;
+    border-top: 1px dotted #eee;
+    background: transparent;
 }
 
 .notifications.unread {
-  background: #fff9ea;
+    background: #fff9ea;
+}
+
+#nav-search-form {
+    margin-bottom: 0;
+    width: 350px;
 }

@@ -64,6 +64,14 @@ return [
             'url' => env('AWS_URL'),
         ],
 
+        'qiniu' => [
+            'driver'     => 'qiniu',
+            'access_key' => 'Uv1Bo-74CRpsztWd87RVAf_sxdLL2_68KJIsXfvS',
+            'secret_key' => 'mcejtUH6bogAgvaMLdO0VHlRa7yv_kQEORHHSWwf',
+            'bucket'     => 'zhihu',
+            'domain'     => 'p7u3ejs6f.bkt.clouddn.com', // or host: https://xxxx.clouddn.com
+        ],
+
     ],
 
 ];

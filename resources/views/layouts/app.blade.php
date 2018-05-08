@@ -53,6 +53,17 @@
 
                 </ul>
 
+                <form action="/search" method="get" id="nav-search-form">
+                    <div class="input-group">
+                        <input name="keyword" id="search_keyword" placeholder="搜索你感兴趣的内容" class="form-control">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">
+                                 <i class="icon iconfont">&#xe686;</i>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->

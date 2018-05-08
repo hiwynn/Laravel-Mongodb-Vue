@@ -14,10 +14,14 @@ class UsersController extends Controller
     public function changeAvatar(Request $request)
     {
         $file = $request->file('img');
-        $fileName = md5(time() . user()->id) . '.' . $file->getClientOriginalExtension();
-        $file->move(public_path('avatars'), $fileName);
+        $fileName = 'avatars/' . md5(time() . user()->id) . '.' . $file->getClientOriginalExtension();
+        // $file->move(public_path('avatars'), $fileName);
 
-        user()->avatar = '/avatars/'.$fileName;
+        \Storage::disk('qiniu')->writeStream($fileName, fopen($file->getRealPath(), 'r'));
+
+        // user()->avatar = '/avatars/' . $fileName;
+        user()->avatar = 'http://' . config('filesystems.disks.qiniu.domain') . '/' . $fileName;
+
         user()->save();
 
         return ['url' => user()->avatar];
