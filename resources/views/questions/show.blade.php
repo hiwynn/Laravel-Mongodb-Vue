@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-1">
-                <div class="card">
+                <div class="card" style="margin-bottom: 12px">
                     <div class="card-header">
                         {{ $question->title }}
                         @foreach($question->topics as $topic)
@@ -69,7 +69,7 @@
                                     <h4 class="media-heading">
                                         <a href="/user/{{$answer->user->name}}">{{ $answer->user->name }}</a>
                                     </h4>
-                                    {!! $answer->body !!}
+                                    <question-answer content="{{$answer->body}}"></question-answer>
                                 </div>
                                 <comments type="answer"
                                           model="{{$answer->id}}"

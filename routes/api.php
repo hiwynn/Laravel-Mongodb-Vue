@@ -28,4 +28,5 @@ Route::middleware('auth:api')->post('/message/store', 'MessagesController@store'
 Route::middleware('auth:api')->get('/answer/{id}/comments', 'CommentsController@answer');
 Route::middleware('auth:api')->get('/question/{id}/comments', 'CommentsController@question');
 Route::middleware('auth:api')->post('comment', 'CommentsController@store');
+Route::middleware('auth:api')->get('/recommend/answer/{id}', 'AnswersController@recommend');
 

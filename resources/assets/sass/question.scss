@@ -1,0 +1,25 @@
+.question-list-container {
+  .card {
+    padding: 15px;
+    margin-bottom: 10px;
+    .media {
+      .media-left {
+        margin-right: 12px;
+      }
+      .media-body {
+        margin-top: 3px;
+        h5 {
+          margin-bottom: 0;
+        }
+      }
+    }
+    .main-area {
+      h4.media-heading {
+        margin: 8px 0;
+      }
+      .recommend-answer {
+
+      }
+    }
+  }
+}

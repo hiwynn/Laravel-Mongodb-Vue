@@ -11,7 +11,7 @@ class TopicsController extends Controller
 
     public function __construct(TopicRepository $topic)
     {
-        $this->$topic = $topic;
+        $this->topic = $topic;
     }
 
     public function index(Request $request)

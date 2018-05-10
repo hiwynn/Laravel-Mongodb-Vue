@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\AnswerRepository;
 use App\Http\Requests\StoreAnswerRequest;
+use App\Answer;
 use Auth;
 
 class AnswersController extends Controller
@@ -25,5 +26,10 @@ class AnswersController extends Controller
         $answer->question()->increment('answers_count');
 
         return back();
+    }
+
+    public function recommend($question)
+    {
+        return Answer::where('question_id', $question)->latest()->first();
     }
 }

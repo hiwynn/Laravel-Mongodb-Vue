@@ -12,7 +12,6 @@
         props   : ['user'],
         mounted() {
             this.$http.get('/api/user/followers/' + this.user).then(response => {
-          console.log(response.data);
                 this.followed = response.data.followed
             })
         },

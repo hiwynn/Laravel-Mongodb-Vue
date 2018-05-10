@@ -1,30 +1,27 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container question-list-container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 @foreach($questions as $question)
-                    <div class="card" style="padding: 15px; margin-bottom: 10px">
+                    <div class="card">
                         <div class="media">
-                            <div class="media-left" style="margin-right: 12px">
+                            <div class="media-left">
                                 <a href="">
                                     <img width="30" src="{{ $question->user->avatar }}"
                                          alt="{{ $question->user->name }}">
                                 </a>
                             </div>
-                            <div class="media-body" style="margin-top: 3px">
-                                <h5 style="margin-bottom: 0">{{ $question->user->name }}</h5>
+                            <div class="media-body">
+                                <h5>{{ $question->user->name }}</h5>
                             </div>
                         </div>
-                        <div>
-                            <h4 class="media-heading" style="margin: 8px 0;">
+                        <div class="main-area">
+                            <h4 class="media-heading">
                                 <a href="/questions/{{$question->id}}">{{ $question->title }}</a>
                             </h4>
-                            <div class="recommend-answer">
-                                <span></span>
-                                <button type="button"></button>
-                            </div>
+                            <recommend-answer question="{{$question->id}}"></recommend-answer>
                         </div>
                     </div>
                 @endforeach
